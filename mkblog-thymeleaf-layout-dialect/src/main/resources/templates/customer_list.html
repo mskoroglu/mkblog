@@ -1,0 +1,35 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+<head>
+    <title>Müşteriler</title>
+</head>
+<body>
+
+<th:block layout:fragment="content">
+    <h3>Müşteriler</h3>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>No</th>
+            <th>Müşteri Adı</th>
+            <th>E-posta Adresi</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${customers.empty}">
+            <td colspan="4" class="text-center">Kayıt bulunamadı.</td>
+        </tr>
+        <tr th:each="customer : ${customers}">
+            <td th:text="${customer.id}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.email}"></td>
+            <td class="text-right">
+                <a th:href="@{|/customers/${customer.id}/delete|}" class="btn btn-sm btn-danger">Sil</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</th:block>
+
+</body>
+</html>
